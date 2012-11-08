@@ -2,7 +2,7 @@ ipaddr_range_set
 ================
 
 convenience class to create a set of possibly discontiguous IP address range
-segments, and check if an IP address is in the set. 
+segments, and check if an IP address is in the set. ruby 1.9.3+ only. 
 
 Ruby stdlib [IPAddr](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/ipaddr/rdoc/IPAddr.html) 
 does the heavy-lifting, this is relatively simple code wrapping it
