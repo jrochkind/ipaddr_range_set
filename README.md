@@ -26,10 +26,11 @@ but many of us have to do it anyway.
       (ip_addr..ip_addr)      # range of arbitrary IPAddr objects.       
     )
     
-When ruby Range's are used, IPAddrRangeSegment makes sure to use `Range#cover?`
+When ruby Range's are used, IPAddrRangeSet makes sure to use `Range#cover?`
 internally, not `Range#include?` (the latter being disastrous for anything that
-doesn't have `#to_int`).  Triple dot `...` exclusive ranges are supported, if for
-some reason you want them. 
+doesn't have `#to_int`).  Triple dot `...` exclusive endpoint ranges are 
+supported, which can be convenient if you don't like writing lots of `255`s
+in your range end points. 
 
     range.include?  '220.1.10.5'
     range.include?  IPAddr.new('220.1.10.5')
