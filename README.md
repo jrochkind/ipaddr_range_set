@@ -40,7 +40,7 @@ IPAddrRangeSets are immutable, but you can create new ones combining existing
 ranges:
 
     new_range = IPAddrRangeSet('8.10.5.1') + IPAddrRangeSet('8.11.6.1')
-    new_range = IPAddrRangeSet('8.10.5.1').add('8.0.0.0/24')
+    new_range = IPAddrRangeSet('8.10.5.1').add('8.0.0.0/24', 10.0.0.1..10.1.4.255 )
     
 The internal implementation just steps through all range segments and checks
 the argument for inclusion, there's no special optimization to detect overlapping
