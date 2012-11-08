@@ -116,5 +116,5 @@ class IPAddrRangeSet
   IPv6Local = IPAddrRangeSet.new("fc00::/7")
   IPv6Loopback =  IPAddrRangeSet.new("::1")
   
-  LocalAddresses = IPv4Local + IPv4Local + IPv6Local + IPv6Local 
+  LocalAddresses = IPv4Local + IPv4Loopback + IPv6Local + IPv6Loopback 
 end

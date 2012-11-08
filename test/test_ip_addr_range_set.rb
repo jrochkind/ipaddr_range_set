@@ -121,7 +121,7 @@ class TestIpAddrRange < Test::Unit::TestCase
   end
   
   def test_local_constants
-    %w{10.3.3.1 172.16.4.1 192.168.2.1  fc00::1}.each do |ip|
+    %w{10.3.3.1 172.16.4.1 192.168.2.1  fc00::1 127.0.0.1 ::1}.each do |ip|
       assert IPAddrRangeSet::LocalAddresses.include?(ip), "IPAddrRangeSet::LocalAddresses should include #{ip}"
     end
     
