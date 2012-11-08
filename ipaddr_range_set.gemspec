@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Jonathan Rochkind"]
   s.email       = ["jonathan@dnil.net"]
   s.homepage    = "https://github.com/jrochkind/ipaddr_range_set"
-  s.summary     = %q{ruby gem, dealing with sets of IPAddr ranges, and checking if a given ip addr is in the range }
+  s.summary     = %q{convenience class to create a set of possibly discontiguous IP address range
+segments, and check if an IP address is in the set.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
