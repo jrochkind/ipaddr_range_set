@@ -8,7 +8,7 @@ Ruby stdlib IPAddr does the heavy-lifting, this is relatively simple code,
 but which can simplify your own code when used. Having to do this sort
 of thing is often the sign of a bad design, but many of us have to do it anyway. 
 
-== Usage
+## Usage
 
     require 'ipaddr_range_set'
     
@@ -54,13 +54,13 @@ and loopback ranges in both IPv4 IPv6.   IPv4Local, IPv4Loopback, IPv6Local,
 IPv6Loopback.  The constant `LocalAddresses` is the union of v4 and v6 local 
 and loopback addresses. 
 
-    IPAddrRangeSet::LocalAddress.include? "127.0.0.1" # true
-    IPAddrRangeSet::LocalAddress.include? "10.0.0.1" # true
-    IPAddrRangeSet::LocalAddress.include? "192.168.0.1" # true
-    IPAddrRangeSet::LocalAddress.include? "::1" # true, ipv6 loopback
-    IPAddrRangeSet::LocalAddress.include? "fc00::1" # an ipv6 local
+    IPAddrRangeSet::LocalAddresses.include? "127.0.0.1" # true
+    IPAddrRangeSet::LocalAddresses.include? "10.0.0.1" # true
+    IPAddrRangeSet::LocalAddresses.include? "192.168.0.1" # true
+    IPAddrRangeSet::LocalAddresses.include? "::1" # true, ipv6 loopback
+    IPAddrRangeSet::LocalAddresses.include? "fc00::1" # an ipv6 local
     
-== Note on ipv6
+## Note on ipv6
 
 It supports ipv6 just because it was so easy to do so with the underlying
 IPAddr implementation.  But I don't have much experience or use for IPv6, there
