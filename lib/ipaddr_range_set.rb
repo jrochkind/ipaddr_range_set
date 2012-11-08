@@ -110,6 +110,7 @@ end
 class IPAddrRangeSet
   # Constant ranges for local/non-routable/private addresses
   IPv4Local     = IPAddrRangeSet.new("10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16")
+  # who knew it's not just 127.0.0.1? Check the spec, it's this:
   IPv4Loopback  = IPAddrRangeSet.new("127.0.0.0/8")
   
   IPv6Local = IPAddrRangeSet.new("fc00::/7")

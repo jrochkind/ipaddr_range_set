@@ -14,14 +14,14 @@ but many of us have to do it anyway.
 
     require 'ipaddr_range_set'
     
-    # Zero or more segment arguments, of a variety
+    # Zero or more segment arguments, which can be input in a variety of
     # of formats. 
     range = IPAddrRangeSet.new(
-      '220.1.10.3',   # an IPv4 as a string
-      '2001:db8::10',  # An IPv6 as a string
-      '8.0.0.0/24',    # IPv4 as CIDR, IPv6 CIDR too
+      '220.1.10.3',    # a single IPv4 as a string
+      '2001:db8::10',  # a single IPv6 as a string
+      '8.0.0.0/24',    # IPv4 as CIDR, works for IPv6 CIDR too
       '8.*.*.*',       # informal splat notation, only for IPv4
-      '8.8.0.0'..'8.8.2.255', # arbitrary range
+      '8.8.0.0'..'8.8.2.255', # arbitrary range, works for IPv6 too. 
       IPAddr.new(whatever),   # arbitrary existing IPAddr object
       (ip_addr..ip_addr)      # range of arbitrary IPAddr objects.       
     )
@@ -52,8 +52,8 @@ As above range 'union' is supported, but range intersection is not. It's
 a bit tricky to implement well, and I don't have a use case for it. 
 
 Built-in constants are available for local (private, not publically routable)
-and loopback ranges in both IPv4 IPv6.   IPv4Local, IPv4Loopback, IPv6Local, 
-IPv6Loopback.  The constant `LocalAddresses` is the union of v4 and v6 local 
+and loopback ranges in both IPv4 and IPv6.   `IPAddrRangeSet::IPv4Local`, `IPv4Loopback`, `IPv6Local`, 
+`IPv6Loopback`.  The constant `LocalAddresses` is the union of all v4 and v6 local 
 and loopback addresses. 
 
     IPAddrRangeSet::LocalAddresses.include? "127.0.0.1" # true
@@ -72,3 +72,8 @@ You can create an IPAddrRangeSet that includes both IPv4 and IPv6 segments, no
 problem. But an individual `include?` argument will only match a segment of
 it's own type, no automatic conversion of IPv4-compatible IPv6 addresses
 is done (should it be? I have no idea, don't really understand ipv6 use cases). 
+
+## thanks
+
+to whoever wrote IPAddr in ruby stdlib, nice to have it, this is just a
+convenience wrapper over it, really. 
