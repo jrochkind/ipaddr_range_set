@@ -4,10 +4,11 @@ ipaddr_range_set
 convenience class to create a set of possibly discontiguous IP address range
 segments, and check if an IP address is in the set. 
 
-Ruby stdlib [IPAddr](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/ipaddr/rdoc/IPAddr.html) does the heavy-lifting, this is relatively simple code, 
-but which can simplify your own code when used. Basing logic on IP address
-range checking can often be the sign of a bad design, but many of us have
-to do it anyway.  
+Ruby stdlib [IPAddr](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/ipaddr/rdoc/IPAddr.html) 
+does the heavy-lifting, this is relatively simple code wrapping it
+in a convenience class. But this can simplify your own code when used. 
+Basing logic on IP address range checking can often be the sign of a bad design, 
+but many of us have to do it anyway.  
 
 ## Usage
 
