@@ -25,12 +25,18 @@ but many of us have to do it anyway.
       IPAddr.new(whatever),   # arbitrary existing IPAddr object
       (ip_addr..ip_addr)      # range of arbitrary IPAddr objects.       
     )
-    
+
+Ranges and splats are handled by this gem (in terms of underlying IPAddr), other strings
+passed directly to IPAddr constructor. 
+
 When ruby Range's are used, IPAddrRangeSet makes sure to use `Range#cover?`
 internally, not `Range#include?` (the latter being disastrous for anything that
 doesn't have `#to_int`).  Triple dot `...` exclusive endpoint ranges are 
 supported, which can be convenient if you don't like writing lots of `255`s
 in your range end points. 
+
+And then, once you have an IPAddrRangeSet, you can check if a particular
+ip is in the range set, using string (IPv4 or v6) or IPAddr instance:
 
     range.include?  '220.1.10.5'
     range.include?  IPAddr.new('220.1.10.5')
@@ -41,7 +47,7 @@ IPAddrRangeSets are immutable, but you can create new ones combining existing
 ranges:
 
     new_range = IPAddrRangeSet('8.10.5.1') + IPAddrRangeSet('8.11.6.1')
-    new_range = IPAddrRangeSet('8.10.5.1').add('8.0.0.0/24', 10.0.0.1..10.1.4.255 )
+    new_range = IPAddrRangeSet('8.10.5.1').add('8.0.0.0/24', '10.0.0.1'..'10.1.4.255' )
     
 The internal implementation just steps through all range segments and checks
 the argument for inclusion, there's no special optimization to detect overlapping
