@@ -12,6 +12,8 @@ but many of us have to do it anyway.
 
 ## Usage
 
+### Creating
+
     require 'ipaddr_range_set'
     
     # Zero or more segment arguments, which can be input in a variety of
@@ -35,6 +37,8 @@ doesn't have `#to_int`).  Triple dot `...` exclusive endpoint ranges are
 supported, which can be convenient if you don't like writing lots of `255`s
 in your range end points. 
 
+### Checking
+
 And then, once you have an IPAddrRangeSet, you can check if a particular
 ip is in the range set, using string (IPv4 or v6) or IPAddr instance:
 
@@ -42,6 +46,9 @@ ip is in the range set, using string (IPv4 or v6) or IPAddr instance:
     range.include?  IPAddr.new('220.1.10.5')
     
 `#include?` is aliased as `#===` so you can easily use it in `case/when`.  
+
+
+### Immutable, but create new with union of existing
     
 IPAddrRangeSets are immutable, but you can create new ones combining existing
 ranges:
@@ -57,6 +64,8 @@ involving a search tree of some kind anyway.
 
 As above range 'union' is supported, but range intersection is not. It's 
 a bit tricky to implement well, and I don't have a use case for it. 
+
+### Built-in constants for checking for local address
 
 Built-in constants are available for local (private, not publically routable)
 and loopback ranges in both IPv4 and IPv6.   `IPAddrRangeSet::IPv4Local`, `IPv4Loopback`, `IPv6Local`, 
