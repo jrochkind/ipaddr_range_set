@@ -4,9 +4,27 @@ require 'ipaddr'
 
 class IPAddrRangeSet
   
+  # Zero or more segment arguments, which can be input in a variety of
+  # of formats. 
+  # range = IPAddrRangeSet.new(
+  #    '220.1.10.3',    # a single IPv4 as a string
+  #    '2001:db8::10',  # a single IPv6 as a string
+  #    '8.0.0.0/24',    # IPv4 as CIDR, works for IPv6 CIDR too
+  #    '8.*.*.*',       # informal splat notation, only for IPv4
+  #    '8.8.0.0'..'8.8.2.255', # arbitrary range, works for IPv6 too. 
+  #    IPAddr.new(whatever),   # arbitrary existing IPAddr object
+  #    (ip_addr..ip_addr),     # range of arbitrary IPAddr objects.
+  #    IPAddrRangeSet::LocalAddresses    # An existing IPAddrRangeSet
+  # )
   def initialize(*segments_list)        
     
     segments_list.each do |segment|
+      
+      if IPAddrRangeSet === segment
+        # just absorb em
+        segments.concat segment.segments
+        next
+      end
       
       if IPAddr === segment
         segment.freeze
@@ -84,8 +102,7 @@ class IPAddrRangeSet
   #
   # IPAddrRangeSets are immutable. 
   def union(other_set)
-    all_segments = self.segments + other_set.segments
-    self.class.new  *all_segments
+    self.class.new(self, other_set)
   end
   alias_method :'+', :union
   
@@ -95,6 +112,7 @@ class IPAddrRangeSet
   def add(*new_segments)
     return self + IPAddrRangeSet.new(*new_segments)
   end
+  
   
   protected
   

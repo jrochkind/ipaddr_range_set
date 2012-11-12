@@ -23,7 +23,8 @@ but many of us have to do it anyway.
       '8.*.*.*',       # informal splat notation, only for IPv4
       '8.8.0.0'..'8.8.2.255', # arbitrary range, works for IPv6 too. 
       IPAddr.new(whatever),   # arbitrary existing IPAddr object
-      (ip_addr..ip_addr)      # range of arbitrary IPAddr objects.       
+      (ip_addr..ip_addr),     # range of arbitrary IPAddr objects.
+      IPAddrRangeSet::LocalAddresses    # An existing IPAddrRangeSet
     )
     
 When ruby Range's are used, IPAddrRangeSet makes sure to use `Range#cover?`
@@ -51,6 +52,8 @@ involving a search tree of some kind anyway.
 
 As above range 'union' is supported, but range intersection is not. It's 
 a bit tricky to implement well, and I don't have a use case for it. 
+
+## Built-in ranges for checking local addresses
 
 Built-in constants are available for local (private, not publically routable)
 and loopback ranges in both IPv4 and IPv6.   `IPAddrRangeSet::IPv4Local`, `IPv4Loopback`, `IPv6Local`, 
