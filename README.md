@@ -1,7 +1,7 @@
 ipaddr_range_set
 ================
 [![Build Status](https://travis-ci.org/jrochkind/ipaddr_range_set.png)](https://travis-ci.org/jrochkind/ipaddr_range_set)
-
+[![Gem Version](https://badge.fury.io/rb/ipaddr_range_set.png)](http://badge.fury.io/rb/ipaddr_range_set)
 
 
 convenience class to create a set of possibly discontiguous IP address range
