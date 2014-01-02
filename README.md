@@ -1,6 +1,6 @@
 ipaddr_range_set
 ================
-{<img src="https://travis-ci.org/jrochkind/ipaddr_range_set.png" />}[https://travis-ci.org/jrochkind/ipaddr_range_set]
+[![Build Status](https://travis-ci.org/jrochkind/ipaddr_range_set.png)](https://travis-ci.org/jrochkind/ipaddr_range_set)
 
 
 
