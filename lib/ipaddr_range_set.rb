@@ -3,6 +3,11 @@ require "ipaddr_range_set/version"
 require 'ipaddr'
 
 class IPAddrRangeSet
+  # In ruby 2.0, they introduced IPAddr::InvalidAddressError, before
+  # that it was just ArgumentError. Let's throw it if we've got it
+  # to be consistent. 
+  ArgErrorClass = (defined? IPAddr::InvalidAddressError) ? IPAddr::InvalidAddressError : ArgumentError
+
   
   # Zero or more segment arguments, which can be input in a variety of
   # of formats. 
@@ -52,7 +57,7 @@ class IPAddrRangeSet
         octets = segment.split('.')
                 
         if (octets.rindex {|o| o =~ /\d+/}) > octets.rindex("*")
-          raise ArgumentError.new("Invalid splat range, all *s have to come before all concrete octets")
+          raise ArgErrorClass.new("Invalid splat range, all *s have to come before all concrete octets")
         end
                 
         splats = 0
