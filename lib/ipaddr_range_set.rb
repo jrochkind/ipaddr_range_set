@@ -85,7 +85,7 @@ class IPAddrRangeSet
     segments.each do |segment|
       # important to use cover? and not include? on Ranges, to avoid
       # terribly inefficient check. But if segment is an IPAddr, you want include?
-      if segment.respond_to?(:cover)
+      if segment.respond_to?(:cover?)
         return true if segment.cover? ip_addr
       else
         return true if segment.include? ip_addr
