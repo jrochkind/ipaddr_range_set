@@ -1,5 +1,8 @@
 ipaddr_range_set
 ================
+{<img src="https://travis-ci.org/jrochkind/ipaddr_range_set.png" />}[https://travis-ci.org/jrochkind/ipaddr_range_set]
+
+
 
 convenience class to create a set of possibly discontiguous IP address range
 segments, and check if an IP address is in the set. ruby 1.9.3+ only. 
