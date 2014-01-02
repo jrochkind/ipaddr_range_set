@@ -75,15 +75,19 @@ class TestIpAddrRange < Test::Unit::TestCase
   end
   
   def test_bad_input
-    assert_raise(ArgumentError) {  IPAddrRangeSet.new("foo")}
+    # ruby 2.0  IPAddr::InvalidAddressError is a subclass of ArgumentError,
+    # but minitest assert_raise insists on exact kind
+    exception_class = (defined? IPAddr::InvalidAddressError) ? IPAddr::InvalidAddressError : ArgumentError
+
+    assert_raise(exception_class) {  IPAddrRangeSet.new("foo")}
     
-    assert_raise(ArgumentError) {  IPAddrRangeSet.new("124.*")}
+    assert_raise(exception_class) {  IPAddrRangeSet.new("124.*")}
     
     # splats have to be at end  
-    assert_raise(ArgumentError) {  IPAddrRangeSet.new("124.*.1.1")}
+    assert_raise(exception_class) {  IPAddrRangeSet.new("124.*.1.1")}
     
     # Not a valid ipv4, make sure we catch it on ranges
-    assert_raise(ArgumentError) {  IPAddrRangeSet.new("124.999.1.1".."125.0.0.1") }
+    assert_raise(exception_class) {  IPAddrRangeSet.new("124.999.1.1".."125.0.0.1") }
   end
   
   def test_multi_arg
